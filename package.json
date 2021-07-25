@@ -1,45 +1,81 @@
 {
-	"name": "novelist",
-	"displayName": "Novelist",
-	"description": "Tools for writers who are dead set on using vscode for writing",
-	"version": "0.0.1",
-	"engines": {
-		"vscode": "^1.58.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"onLanguage:markdown"
-	],
-	"main": "./out/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "novelist.helloWorld",
-				"title": "Hello World"
-			}
-		]
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"pretest": "npm run compile && npm run lint",
-		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js"
-	},
-	"devDependencies": {
-		"@types/vscode": "^1.58.0",
-		"@types/glob": "^7.1.3",
-		"@types/mocha": "^8.2.2",
-		"@types/node": "14.x",
-		"eslint": "^7.27.0",
-		"@typescript-eslint/eslint-plugin": "^4.26.0",
-		"@typescript-eslint/parser": "^4.26.0",
-		"glob": "^7.1.7",
-		"mocha": "^8.4.0",
-		"typescript": "^4.3.2",
-		"vscode-test": "^1.5.2"
-	}
+  "name": "novelist",
+  "displayName": "Novelist",
+  "description": "Tools for writers who are dead set on using vscode for writing",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.58.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
+  "main": "./out/extension.js",
+  "publisher": "novelist",
+  "contributes": {
+    "commands": [
+      {
+        "command": "novelist.render",
+        "title": "Novelist: Render .docx"
+      },
+      {
+        "command": "novelist.merge",
+        "title": "Novelist: Merge chapters"
+      }
+    ],
+    "configuration": {
+      "title": "Novelist",
+      "properties": {
+        "novelist.manuscriptFolder": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": "./Manuscript",
+          "description": "Specifies the folder path containing your chapters."
+        },
+		"novelist.referencesFolder": {
+			"type": [
+			  "string",
+			  "null"
+			],
+			"default": "./References",
+			"description": "Specifies the folder path containing references for Pandoc."
+		  }
+      }
+    },
+    "configurationDefaults": {
+      "[markdown]": {
+        "editor.wordWrap": "on",
+        "editor.quickSuggestions": false
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/bluebird": "^3.5.36",
+    "@types/glob": "^7.1.3",
+    "@types/mocha": "^8.2.2",
+    "@types/node": "14.x",
+    "@types/vscode": "^1.58.0",
+    "@typescript-eslint/eslint-plugin": "^4.26.0",
+    "@typescript-eslint/parser": "^4.26.0",
+    "eslint": "^7.27.0",
+    "glob": "^7.1.7",
+    "mocha": "^8.4.0",
+    "typescript": "^4.3.2",
+    "vscode-test": "^1.5.2"
+  },
+  "dependencies": {
+    "bluebird": "^3.7.2"
+  }
 }
