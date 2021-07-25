@@ -2,6 +2,10 @@ import * as vscode from "vscode";
 import { ReplaceParams } from "./ReplaceParams";
 
 export const replaceDoubleDash = ({ range, event, editor }: ReplaceParams) => {
+  if (!range.start.character) {
+    return;
+  }
+
   const previousCharacter = new vscode.Range(
     new vscode.Position(range.start.line, range.start.character - 1),
     new vscode.Position(range.start.line, range.start.character + 1)

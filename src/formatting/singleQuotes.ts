@@ -10,7 +10,12 @@ export const replaceSingleQuotes = ({
     range.start,
     new vscode.Position(range.start.line, range.start.character + 1)
   );
+
   let text = event.document.getText(previousCharacter);
+  console.log(text);
+  console.log(range.start.line);
+  console.log(range.start.character);
+  console.log(previousCharacter);
   if (text.indexOf("'") === -1) {
     return;
   }
